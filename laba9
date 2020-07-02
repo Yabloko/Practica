@@ -1,1 +1,86 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    
+   int n, i;                                //vvod
+    
+    cout << "Укажите размер матрицы n" << endl;
+  
+    cin >> n;
+    
+     cout << "Заполните матрицу" << endl;
+     
+     int str, stolb; 
+     str = n;
+     stolb = n;
+    
+    int **mas = new int* [str];
+    
+    for (int i=0; i<str;i++)
+    {
+        mas[i] = new int [stolb];
+    }
+    
+    
+    for (int i = 0; i<n; i++)
+    {
+        for (int j = 0; j<n; j++)
+        {
+            cin >> mas[i][j];
+        }
+    }
+
+   
+    cout << "Начальная матрица:" << endl;
+    
+    for (int i = 0; i<n; i++)               //vivod
+    {
+        for (int j = 0; j<n; j++)
+        {
+            cout << mas[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    
+    
+    
+    
+    
+    int arrOfMinOfCol[n];      //osnova
+    int min;
+    for (int j = 0; j < n; j++)
+    {
+        min = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (mas[min][j] > mas[i][j])
+            {
+                min = i;
+            }
+        }
+        arrOfMinOfCol[j] = mas[min][j];
+    }
+ 
+    cout << "Минимальные элементы столбцов:" << '\n';
+    for (int i = 0; i < n; i++)
+    {
+        cout << arrOfMinOfCol[i] << "  ";
+    }
+ 
+    
+    
+    
+    
+    for (int i=0; i<str;i++)
+    {
+        delete [] mas[i];
+    }
+    
+    delete[] mas;
+    
+    return 0;
+}
 
