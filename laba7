@@ -1,10 +1,51 @@
 #include <iostream>
+#include <cfloat>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 
 using namespace std;
 
-int mas[5][5], i, j;
-
 int main()
 {
+srand((int)time(0));
+const int n=5;
+int X[n], imin=0, imax, jmax;
+double A[n][n], min_mod_sd=DBL_MAX, max_mod;
 
+cout << "Matrix A:\n";
+for (int i = 0; i < n; i++)
+{
+for (int j = 0; j < n; j++)
+{
+A[i][j]=rand()%19 - 9;
+cout << setw(3) << A[i][j] << " ";
+}
+if (fabs(A[i][n-1-i])<min_mod_sd)
+{min_mod_sd=fabs(A[i][n-1-i]);imin=i;}
+cout << "\n";
+}
+
+cout << "min_mod_sd=" << A[imin][n-1-imin] << "\n";
+
+for (int i = 0; i < n; i++)
+{
+max_mod=0.0;
+imax=jmax=0;
+for (int j = 0; j < n; j++)
+if(fabs(A[i][j])>max_mod)
+{max_mod=fabs(A[i][j]);imax=i;jmax=j;}
+cout << "Row " << i+1 << ": " << A[imax][jmax] << "\n";
+if (A[imax][jmax]==min_mod_sd) X[i]=1;
+else X[i]=-1;
+}
+
+cout << "Array X:\n";
+for (int i = 0; i < n; i++)
+cout << X[i] << " ";
+cout << "\n";
+
+system("pause");
+return 0;
 }
