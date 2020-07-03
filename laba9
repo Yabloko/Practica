@@ -49,11 +49,14 @@ int main()
     
     
     
-    int arrOfMinOfCol[n];      //osnova
-    int min;
+    int masOfMinOfStolb[n];                  //osnova
+    
+    int min;                  //poisk naim elementa stolbca
+    
     for (int j = 0; j < n; j++)
     {
         min = 0;
+        
         for (int i = 0; i < n; i++)
         {
             if (mas[min][j] > mas[i][j])
@@ -61,20 +64,54 @@ int main()
                 min = i;
             }
         }
-        arrOfMinOfCol[j] = mas[min][j];
+        masOfMinOfStolb[j] = mas[min][j];
     }
  
     cout << "Минимальные элементы столбцов:" << '\n';
-    for (int i = 0; i < n; i++)
+    
+    for (int j = 0; j < n; j++)
     {
-        cout << arrOfMinOfCol[i] << "  ";
+        cout << masOfMinOfStolb[j] << "  ";
+    }
+    
+    cout << endl;
+ 
+    for (int j = 0; j < n; j++)
+    {
+        if (masOfMinOfStolb[j]>0 && masOfMinOfStolb[j+1]<0 )
+        {
+            
+            for(i=0 ;i < n; i++)
+            {
+                int p;
+                
+                p=mas[i][j];
+                
+                mas[i][j]=mas[i][j+1];
+                
+                mas[i][j+1]=p;
+                
+            }
+        }
+    } 
+    
+    cout << "Конечная матрица:" << endl;
+    
+    
+    
+    
+    for (int i = 0; i<n; i++)               //vivod2
+    {
+        for (int j = 0; j<n; j++)
+        {
+            cout << mas[i][j] << "\t";
+        }
+        cout << "\n";
     }
  
+   
     
-    
-    
-    
-    for (int i=0; i<str;i++)
+    for (int i=0; i<str;i++)             //chistka
     {
         delete [] mas[i];
     }
